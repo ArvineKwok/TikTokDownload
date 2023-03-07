@@ -249,6 +249,8 @@ class Profile():
         # 封面大图
         # self.dynamic_cover = []
         for v in range(len(result)):
+            if result[v]['aweme_type']['statistics']['digg_count'] < 10000:
+                continue
             try:
                 # url_list < 4 说明是图集
                 # 2022/11/27 aweme_type是作品类型 2：图集 4：视频
@@ -289,7 +291,7 @@ class Profile():
         # 下载主页所有图集
         datas = Util.Images().get_all_images(self.image_list)
         Util.Download().VideoDownload(self)
-        Util.Download().ImageDownload(datas)
+        # Util.Download().ImageDownload(datas)
         self.getNextData()
         return  # self,author_list,video_list,uri_list,aweme_id,nickname,max_cursor
 
