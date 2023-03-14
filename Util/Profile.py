@@ -208,7 +208,7 @@ class Profile():
             print('[  提示  ]:正在对', self.max_cursor, '页进行第 %d 次尝试！\r' % index)
             # 输出日志
             Util.log.info('[  提示  ]:正在对 %s 页进行第 %d 次尝试！' %
-                            (self.max_cursor, index))
+                          (self.max_cursor, index))
             Util.time.sleep(0.5)
             response = Util.requests.get(
                 url=api_naxt_post_url, headers=self.headers)
@@ -249,7 +249,7 @@ class Profile():
         # 封面大图
         # self.dynamic_cover = []
         for v in range(len(result)):
-            if result[v]['aweme_type']['statistics']['digg_count'] < 10000:
+            if result[v]['statistics']['digg_count'] < 10000:
                 continue
             try:
                 # url_list < 4 说明是图集
@@ -295,6 +295,7 @@ class Profile():
         self.getNextData()
         return  # self,author_list,video_list,uri_list,aweme_id,nickname,max_cursor
     # 保存用户主页链接
+
     def s_homepage(self):
         with open(self.path + self.sprit + self.nickname + '.txt', 'w') as f:
             f.write(self.homepage)
